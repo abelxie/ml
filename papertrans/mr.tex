@@ -39,9 +39,6 @@
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \setcounter{secnumdepth}{0}
 
-\author{}
-\date{}
-
 \begin{document}
 \setmainfont{楷体}
 \XeTeXlinebreaklocale "zh"
@@ -50,6 +47,12 @@
 \newcommand{\PP}{ {\mathcal{P}} }
 \newcommand{\UU}{ {\mathcal{U}} }
 \newcommand{\LL}{ {\mathcal{L}} }
+
+\title{机器的崛起\footnote{本文原文在\url{http://www.stat.cmu.edu/~larry/Wasserman.pdf}由Wasserman教授所写，翻译纯属个人兴趣，若有错误，还望谅解}}
+\author{Larry Wasserman, trans by Sheldon}
+\date{}
+\maketitle
+
 \section{机器的崛起}
 
 在统计界50周年的主席会议上，我感受到机器学习的崛起，以及它对统计将意味着什么。它意味着很多新的研究领域，新的应用领域和很多新的朋友（同事）。我们的学生将和机器学习的学生竞争工作。我乐观地觉得空想主义的统计系会热情地拥抱这个新生的领域；然而那些无视或是避开机器学习的人终将发现他们被遗弃在一片陈旧过时的瓦砾堆中。
@@ -62,7 +65,7 @@
 
 在这25年的职业生涯中，我一直亲眼目睹着机器学习从一坨相当原始（虽然非常聪明的）分类算法，发展到如今不论在理论还是应用上都相当复杂的``科学''。
 
-只要扫视一眼The Journal of Machine Learning Research或NIPS，我们就能看到相当多的熟面孔：
+只要扫视一眼The Journal of Machine Learning Research(\url{mlr.csail.mit.edu})或NIPS(\url{books.nips.cc})，我们就能看到相当多的熟面孔：
 \begin{quote} 
     条件似然，序列设计，再生核Hilbert空间，聚类，生物信息，
     minimax理论，稀疏回归，大协方差估计，模型选择，密度估计，
@@ -113,7 +116,7 @@ ML以超过统计的步伐发展着。一开始，ML的研究者开发的专家�
 
 很多文章想出了种种有启发性的方法来利用无标签数据。简单解释如下。试想我们下载了一百万张带有猫狗图片的网页。选取100张对它们进行手工标注。半监督方法可以让我们使用其他999,900张图片来构造一个更好地分类器。
 
-但半监督推断可行么？或者说，什么条件下它可行？文\cite{}里，我们给出了以下结论（这里不严格地给出）：
+但半监督推断可行么？或者说，什么条件下它可行？文\cite{wass2013}里，我们给出了以下结论（这里不严格地叙述如下）：
 
 设$X_i \in \RR^d$。设$S_n$为只使用有标签数据的监督学习的估计子的集合，用$SS_N$记半监督估计子（使用全部的有标签和无标签数据）的集合。令$m$为无标签数据的个数，假设$m\geq n^{2/(2+\xi)}$，其中$0 < \xi < d-3$。令$f(x)=\EE(Y\vert X=x)$。那么存在一大类的非参数分布$\PP_n$使得以下结论为真：
 
@@ -121,7 +124,19 @@ ML以超过统计的步伐发展着。一开始，ML的研究者开发的专家�
 \def\labelenumi{\arabic{enumi}.}
 \itemsep1pt\parskip0pt\parsep0pt
 \item 存在半监督估计子$\hat{f}$使得
-    $$ \mathrm{sup}_{P \in \PP_n} R_P(\hat{f}) \leq (\frac{C}{n})^\frac{2}{2+\xi}$$，这里$R_P(\hat{f})=\EE(\hat{f}(X) - f(X))^2$称为分布$P$下估计子$\hat{f}$的风险。
+    $$ \mathrm{sup}_{P \in \PP_n} R_P(\hat{f}) \leq \left(\frac{C}{n}\right)^\frac{2}{2+\xi}$$，这里$R_P(\hat{f})=\EE(\hat{f}(X) - f(X))^2$称为分布$P$下估计子$\hat{f}$的风险。
+\item 对监督估计子$S_n$有
+    $$ \mathrm{inf}_{\hat{f} \in S_n} \mathrm{sup}_{P \in \PP_n} R_P(\hat{f}) \geq \left( \frac{C}{n} \right)^\frac{2}{d-1} $$
+\item 由二者得到以下，
+    $$ \frac{\mathrm{inf}_{\hat{f} \in SS_N} \mathrm{sup}_{P\in\PP_n} R_P(\hat{f}) }{ \mathrm{inf}_{\hat{f} \in S_N} \mathrm{sup}_{P\in\PP_n} R_P(\hat{f}) } \leq \left(\frac{C}{n}\right)^\frac{2(d-3-\xi)}{(2+\xi)(d-1)} \rightarrow 0 $$，即半监督的估计被监督的估计控制。
 \end{enumerate}
 
+分布类$\PP_n$的选取使得$X$的边缘分布在某个低维子空间上非常集中，从而相应的回归函数也光滑。我们还没有证明半监督推断对监督推断的改进一定上上面这种样子的，但是我们猜想这个结论是对的。我们的框架里引入了一个参数$\alpha$来刻画半监督假设的强度。我们事实上证明了，总可以找到正确的$\alpha$来匹配数据。
+
+\subsubsection{案例II：统计拓扑}
+计算拓扑许和机器学习的研究人员发明了很多函数和数据的形状的方法。这里我简单回顾下我们再流形估计上的工作\cite{wass2012a,wass2012b,wass2012c}。
+
+
+\bibliographystyle{amsplain}
+\bibliography{mr}
 \end{document}
