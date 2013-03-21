@@ -48,7 +48,7 @@
 \newcommand{\UU}{ {\mathcal{U}} }
 \newcommand{\LL}{ {\mathcal{L}} }
 
-\title{机器的崛起\footnote{本文原文在\url{http://www.stat.cmu.edu/~larry/Wasserman.pdf}由Wasserman教授所写，翻译纯属个人兴趣，若有错误，还望谅解}}
+\title{机器的崛起}\footnote{本文原文在\url{http://www.stat.cmu.edu/~larry/Wasserman.pdf}由Wasserman教授所写，翻译纯属个人兴趣，若有错误，还望谅解}
 \author{Larry Wasserman, trans by Sheldon}
 \date{}
 \maketitle
@@ -144,7 +144,7 @@ $$ H(M,\hat{M}) = \mathrm{inf} \left\{ \epsilon \, : \, M \subset \hat{M} \oplus
 $$ R_n = \mathrm{inf}_{\hat{M}} \mathrm{sup}_{P \in \PP} \EE_P [ H(\hat{M}, M) ] $$
 显然，这个定义依赖于我们对$M$和$\Phi$的假设。
 
-我们的主要结果可以叙述如下。当没有噪音时---即所有的点都落在流形上---我们有$R_n \asymp n^{-2/d} $\footnote{渐进相等？，译者注}。当噪音与$M$正交时有$R_n \asymp n^{-2/(2+d)} $。当噪音服从高斯分布时，风险率$R_n \asymp 1/\log n$。最后一个结果并不惊人，这是个与估计带有误差的变量的函数相似的问题。
+我们的主要结果可以叙述如下。当没有噪音时---即所有的点都落在流形上---我们有$R_n \asymp n^{-2/d} $\footnote{渐进相等，译者注}。当噪音与$M$正交时有$R_n \asymp n^{-2/(2+d)} $。当噪音服从高斯分布时，风险率$R_n \asymp 1/\log n$。最后一个结果并不惊人，这是个与估计带有误差的变量的函数相似的问题。
 
 这个结论对于机器学习的意义在于，即使是他们最妙的算法，也会极大地依赖于噪音的分布的形式。
 
